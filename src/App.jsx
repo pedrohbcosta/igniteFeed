@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import { Header } from './components/Header';
 import { Post } from './components/Post';
 import { Sidebar } from './components/sidebar';
@@ -10,6 +11,37 @@ import './global.css';
 export function App() {
   const [count, setCount] = useState(0)
 
+  const posts = [
+    {
+      id: 1,
+      author: {
+        avatarUrl: 'https://github.com/pedrohbcosta.png',
+        author: 'Pedro Batista',
+        role: 'CMO @yellowberrymkt'
+      },
+      content: [
+        { type: 'paragraph', content: 'Fala galeraa 👋,'},
+        { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀,'},
+        { type: 'link', content: '👉 jane.design/doctorcare'},
+      ],
+      publishedAt: new Date('2022-12-29 12:50:00'),
+    },
+    {
+      id: 2,
+      author: {
+        avatarUrl: 'https://github.com/jramiresbrito.png',
+        author: 'João Ramires',
+        role: 'CTO @yellowberrymkt'
+      },
+      content: [
+        { type: 'paragraph', content: 'Fala galeraa 👋,'},
+        { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀,'},
+        { type: 'link', content: '👉 jane.design/doctorcare'},
+      ],
+      publishedAt: new Date('2022-12-30 14:50:00'),
+    },
+  ]
+
   return (
     <div>
       <Header />
@@ -18,15 +50,17 @@ export function App() {
         <Sidebar />
         
         <main>
-          <Post 
-            author="João Ramires"
-            content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet officiis nihil at, cumque sunt ipsam iste dolorum perferendis corporis laboriosam vel ullam quis sed sapiente libero ex suscipit accusamus, ratione molestias. Officiis suscipit vero voluptates distinctio nobis reiciendis architecto, impedit ullam culpa dolore ratione maiores eius accusantium quos iusto laborum!"
-          />
-          <Post
-            author="Pedro Batista" 
-            content="Lorem ipsum dolor sit amet."
-          />
+          {posts.map(post => {
+            return (
+              <Post 
+                author={post.author}
+                content={post.content}
+                publishedAt={post.publishedAt}
+              />
+            )
+          })}
         </main>
+      
       </div>
       
     </div>
